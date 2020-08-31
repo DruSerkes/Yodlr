@@ -4,7 +4,11 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
 	root         : {
-		display : 'flex'
+		display : 'flex',
+		'& > *' : {
+			margin : theme.spacing(1),
+			width  : '25ch'
+		}
 	},
 	appBar       : {
 		transition : theme.transitions.create([ 'margin', 'width' ], {
@@ -56,6 +60,12 @@ const useStyles = makeStyles((theme) => ({
 			duration : theme.transitions.duration.enteringScreen
 		}),
 		marginLeft : 0
+	},
+	form         : {
+		'& > *' : {
+			margin : '2rem',
+			width  : '25ch'
+		}
 	}
 }));
 

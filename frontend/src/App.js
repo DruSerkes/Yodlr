@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 import DrawerNav from './yodlr/DrawerNav';
-// import Routes from './Routes';
-// import clsx from 'clsx';
 import useStyles from './useStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import OpenContext from './Context';
