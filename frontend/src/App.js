@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import './App.css';
 import DrawerNav from './yodlr/DrawerNav';
 import useStyles from './useStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import OpenContext from './Context';
 import Main from './yodlr/Main';
+import UserContext from './Context';
 
 function App() {
 	const classes = useStyles();
+	const [ users, dispatch ] = useReducer();
+
 	const [ open, setOpen ] = useState(false);
 
 	return (
-		<OpenContext.Provider value={{ open, setOpen }}>
-			<div className="App">
-				<div className={classes.root}>
-					<CssBaseline />
-					<DrawerNav />
-					<Main />
+		<UserContext.Provider value={{ users, dispatch }}>
+			<OpenContext.Provider value={{ open, setOpen }}>
+				<div className="App">
+					<div className={classes.root}>
+						<CssBaseline />
+						<DrawerNav />
+						<Main />
+					</div>
 				</div>
-			</div>
-		</OpenContext.Provider>
+			</OpenContext.Provider>
+		</UserContext.Provider>
 	);
 }
 // {/* TODO make Homepage component */}
