@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './yodlr/Home';
 import Signup from './yodlr/Signup';
-// import userContext from './Context';
+import Admin from './yodlr/Admin';
 
 /**
  * Client-side Routing for Yodlr
@@ -18,8 +18,8 @@ const Routes = () => {
 				{/* <Login /> */}
 			</Route>
 			<Route path="/admin">
-				<h1>Admin</h1>
-				{/* <Admin /> */}
+				{/* <h1>Admin</h1> */}
+				<Admin />
 			</Route>
 			<Route path="/">
 				<Home />

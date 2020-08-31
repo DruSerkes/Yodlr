@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import UserContext from '../Context';
 
 const BASE_URL = `http://localhost:3001/users`;
 
@@ -17,8 +18,8 @@ const Admin = () => {
 
 	return (
 		<div>
-			{users ? (
-				users.map((u) => (
+			{users.length ? (
+				Array.from(users).map((u) => (
 					<h4>
 						{u.email} {u.firstName} {u.lastName}
 					</h4>
