@@ -16,9 +16,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 	const user = req.body;
 	user.id = curId++;
-	if (!user.state) {
-		user.state = 'pending';
-	}
+	if (!user.state) user.state = 'pending';
+
 	users[user.id] = user;
 	log.info('Created user', user);
 	res.json(user);
@@ -27,9 +26,8 @@ router.post('/', (req, res) => {
 /* Get a specific user by id */
 router.get('/:id', (req, res, next) => {
 	const user = users[req.params.id];
-	if (!user) {
-		return next();
-	}
+	if (!user) return next();
+
 	res.json(users[req.params.id]);
 });
 
@@ -45,9 +43,8 @@ router.delete('/:id', (req, res) => {
 /* Update a user by id */
 router.put('/:id', (req, res, next) => {
 	const user = req.body;
-	if (user.id != req.params.id) {
-		return next(new Error('ID paramter does not match body'));
-	}
+	if (user.id != req.params.id) return next(new Error('ID paramter does not match body'));
+
 	users[user.id] = user;
 	log.info('Updating user', user);
 	res.json(user);
