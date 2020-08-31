@@ -6,9 +6,17 @@ import clsx from 'clsx';
 import useStyles from './useStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+// const handleDrawerOpen = () => {
+//     setOpen(true);
+//   };
+
+//   const handleDrawerClose = () => {
+//     setOpen(false);
+//   };
+
 function App() {
 	const classes = useStyles();
-	const [ open ] = useState(false);
+	const [ open, setOpen ] = useState(false);
 
 	return (
 		<div className="App">
