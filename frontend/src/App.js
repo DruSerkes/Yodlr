@@ -12,13 +12,11 @@ const initialState = { users: [] };
 
 function App() {
 	const classes = useStyles();
-	const [ users, dispatch ] = useReducer(userReducer, initialState);
-
+	const [ state, dispatch ] = useReducer(userReducer, initialState);
 	const [ open, setOpen ] = useState(false);
 
 	return (
-		<UserContext.Provider value={{ users, dispatch, open, setOpen }}>
-			{/* <OpenContext.Provider value={{ open, setOpen }}> */}
+		<UserContext.Provider value={{ state, dispatch, open, setOpen }}>
 			<div className="App">
 				<div className={classes.root}>
 					<CssBaseline />
@@ -26,7 +24,6 @@ function App() {
 					<Main />
 				</div>
 			</div>
-			{/* </OpenContext.Provider> */}
 		</UserContext.Provider>
 	);
 }

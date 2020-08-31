@@ -7,8 +7,7 @@ import UserContext from '../Context';
 const Signup = () => {
 	// TODO Add function/logic for registering a user
 	// pass function down as prop to SignupForm
-	const { users, dispatch } = useContext(UserContext);
-	console.log(users);
+	const { state, dispatch } = useContext(UserContext);
 	const addUserToState = (values) => {
 		const action = { type: ADD_USER, user: values };
 		dispatch(action);

@@ -4,13 +4,13 @@ import UserContext from '../Context';
 const BASE_URL = `http://localhost:3001/users`;
 
 const Admin = () => {
-	const { users, dispatch } = useContext(UserContext);
-	console.log(users);
+	const { state, dispatch } = useContext(UserContext);
+	console.log('users == ', state);
 
 	return (
 		<div>
-			{users ? (
-				Object.values(users).map((u) => (
+			{state.users ? (
+				Object.values(state.users).map((u) => (
 					<h4>
 						{u.email} {u.firstName} {u.lastName}
 					</h4>

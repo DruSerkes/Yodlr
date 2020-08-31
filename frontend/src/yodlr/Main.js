@@ -4,18 +4,17 @@ import useStyles from '../useStyles';
 import Routes from '../Routes';
 import UserContext from '../Context';
 import { ADD_USER } from '../reducer/actionTypes';
-
 const BASE_URL = `http://localhost:3001/users`;
 
 const Main = () => {
-	const { users, dispatch, open } = useContext(UserContext);
+	const { state, dispatch, open } = useContext(UserContext);
 	const classes = useStyles();
 
 	const addUserToState = (values) => {
 		const action = { type: ADD_USER, user: values };
 		dispatch(action);
 	};
-	// On
+	// On Load - fetch all users and store in context
 	useEffect(() => {
 		fetch(BASE_URL, { method: 'GET' })
 			.then((response) => response.json())
