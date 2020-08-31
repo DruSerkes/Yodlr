@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
 	const classes = useStyles();
-	const [ open, setOpen ] = useState(false);
+	const [ open ] = useState(false);
 
 	return (
 		<div className="App">

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+/**
+ * Client-side Routing for Yodlr
+ */
 const Routes = () => {
 	return (
 		<Switch>
