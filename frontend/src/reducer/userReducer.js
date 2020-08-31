@@ -5,7 +5,7 @@ const initialState = { users: [] };
 function userReducer(state = initialState, action) {
 	switch (action.type) {
 		case ADD_USER:
-			return { ...state, [action.id]: action.user };
+			return { ...state, [action.user.id]: action.user };
 		case DELETE_USER:
 			const updatedUsers = { ...state };
 			delete updatedUsers[action.id];

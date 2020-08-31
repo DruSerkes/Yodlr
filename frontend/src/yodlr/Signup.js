@@ -9,10 +9,8 @@ const Signup = () => {
 	// pass function down as prop to SignupForm
 	const { users, dispatch } = useContext(UserContext);
 	console.log(users);
-	const addUserToState = ({ email, firstName, lastName }) => {
-		// Math.random is temporary for testing purposes
-		const user = { email, firstName, lastName };
-		const action = { type: ADD_USER, user: user, id: Math.random() };
+	const addUserToState = (values) => {
+		const action = { type: ADD_USER, user: values };
 		dispatch(action);
 	};
 
