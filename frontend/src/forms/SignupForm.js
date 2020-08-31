@@ -10,7 +10,6 @@ const SignupForm = ({ addUserToState }) => {
 	const initialValues = { email: '', firstName: '', lastName: '' };
 	const handleSubmit = (values, { setSubmitting }) => {
 		setSubmitting(false);
-		// console.log(values);
 		addUserToState(values);
 		// TODO - register this user!
 	};

@@ -3,7 +3,6 @@ import './App.css';
 import DrawerNav from './yodlr/DrawerNav';
 import useStyles from './useStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-// import OpenContext from './Context';
 import Main from './yodlr/Main';
 import UserContext from './Context';
 import userReducer from './reducer/userReducer';
@@ -27,15 +26,9 @@ function App() {
 		</UserContext.Provider>
 	);
 }
-// {/* TODO make Homepage component */}
-// <h1>Yodlr Design Challenge</h1>
-// <p>
-// 	{/* TODO make signup page component (with form)  */}
-// 	{/* TODO setup formik components (with Yup for validation) */}
-// 	<a href="/signup.html">Registration Page</a>
-// 	<br />
-// 	{/* TODO make admin page component */}
-// 	<a href="/admin.html">Admin Page</a>
-// </p>
+// TODO make dumb user card component for Admin render
+// 	TODO make signup page add user to backend
+// TODO add add'l functionality for admin (see reqs)
+// TODO refactor Home component
 
 export default App;

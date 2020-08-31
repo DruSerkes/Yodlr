@@ -17,7 +17,8 @@ function userReducer(state = initialState, action) {
 					...state[action.id],
 					email     : action.user.email,
 					firstName : action.user.firstName,
-					lastName  : action.user.lastName
+					lastName  : action.user.lastName,
+					state     : action.user.state
 				}
 			};
 		default:
