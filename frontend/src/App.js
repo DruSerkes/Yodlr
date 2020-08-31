@@ -8,6 +8,7 @@ function App() {
 			<h1>Yodlr Design Challenge</h1>
 			<p>
 				{/* TODO make signup page component (with form)  */}
+				{/* TODO setup formik components (with Yup for validation) */}
 				<a href="/signup.html">Registration Page</a>
 				<br />
 				{/* TODO make admin page component */}
