@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import OpenContext from '../Context';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -26,7 +27,8 @@ import ListItemLink from './ListItemLink';
 const DrawerNav = () => {
 	const classes = useStyles();
 	const theme = useTheme();
-	const [ open, setOpen ] = useState(false);
+	// const [ open, setOpen ] = useState(false);
+	const { open, setOpen } = useContext(OpenContext);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);

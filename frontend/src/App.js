@@ -1,38 +1,27 @@
 import React, { useState } from 'react';
 import './App.css';
 import DrawerNav from './yodlr/DrawerNav';
-import Routes from './Routes';
-import clsx from 'clsx';
+// import Routes from './Routes';
+// import clsx from 'clsx';
 import useStyles from './useStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
-// const handleDrawerOpen = () => {
-//     setOpen(true);
-//   };
-
-//   const handleDrawerClose = () => {
-//     setOpen(false);
-//   };
+import OpenContext from './Context';
+import Main from './yodlr/Main';
 
 function App() {
 	const classes = useStyles();
 	const [ open, setOpen ] = useState(false);
 
 	return (
-		<div className="App">
-			<div className={classes.root}>
-				<CssBaseline />
-				<DrawerNav />
-				<main
-					className={clsx(classes.content, {
-						[classes.contentShift]: open
-					})}
-				>
-					<div className={classes.drawerHeader} />
-					<Routes />
-				</main>
+		<OpenContext.Provider value={{ open, setOpen }}>
+			<div className="App">
+				<div className={classes.root}>
+					<CssBaseline />
+					<DrawerNav />
+					<Main />
+				</div>
 			</div>
-		</div>
+		</OpenContext.Provider>
 	);
 }
 // {/* TODO make Homepage component */}
