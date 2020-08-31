@@ -4,15 +4,15 @@ import './App.css';
 function App() {
 	return (
 		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-					Learn React
-				</a>
-			</header>
+			{/* TODO make Homepage component */}
+			<h1>Yodlr Design Challenge</h1>
+			<p>
+				{/* TODO make signup page component (with form)  */}
+				<a href="/signup.html">Registration Page</a>
+				<br />
+				{/* TODO make admin page component */}
+				<a href="/admin.html">Admin Page</a>
+			</p>
 		</div>
 	);
 }
