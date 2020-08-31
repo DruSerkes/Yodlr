@@ -6,10 +6,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import OpenContext from './Context';
 import Main from './yodlr/Main';
 import UserContext from './Context';
+import userReducer from './reducer/userReducer';
 
 function App() {
 	const classes = useStyles();
-	const [ users, dispatch ] = useReducer();
+	const [ users, dispatch ] = useReducer(userReducer);
 
 	const [ open, setOpen ] = useState(false);
 
