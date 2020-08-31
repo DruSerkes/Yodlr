@@ -5,12 +5,13 @@ import { Button } from '@material-ui/core';
 import useStyles from '../useStyles';
 import { TextField } from 'formik-material-ui';
 
-const SignupForm = () => {
+const SignupForm = ({ addUserToState }) => {
 	const classes = useStyles();
 	const initialValues = { email: '', firstName: '', lastName: '' };
 	const handleSubmit = (values, { setSubmitting }) => {
 		setSubmitting(false);
-		console.log(values);
+		// console.log(values);
+		addUserToState(values);
 		// TODO - register this user!
 	};
 

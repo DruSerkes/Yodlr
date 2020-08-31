@@ -3,28 +3,30 @@ import './App.css';
 import DrawerNav from './yodlr/DrawerNav';
 import useStyles from './useStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import OpenContext from './Context';
+// import OpenContext from './Context';
 import Main from './yodlr/Main';
 import UserContext from './Context';
 import userReducer from './reducer/userReducer';
 
+const initialState = { users: [] };
+
 function App() {
 	const classes = useStyles();
-	const [ users, dispatch ] = useReducer(userReducer);
+	const [ users, dispatch ] = useReducer(userReducer, initialState);
 
 	const [ open, setOpen ] = useState(false);
 
 	return (
-		<UserContext.Provider value={{ users, dispatch }}>
-			<OpenContext.Provider value={{ open, setOpen }}>
-				<div className="App">
-					<div className={classes.root}>
-						<CssBaseline />
-						<DrawerNav />
-						<Main />
-					</div>
+		<UserContext.Provider value={{ users, dispatch, open, setOpen }}>
+			{/* <OpenContext.Provider value={{ open, setOpen }}> */}
+			<div className="App">
+				<div className={classes.root}>
+					<CssBaseline />
+					<DrawerNav />
+					<Main />
 				</div>
-			</OpenContext.Provider>
+			</div>
+			{/* </OpenContext.Provider> */}
 		</UserContext.Provider>
 	);
 }
