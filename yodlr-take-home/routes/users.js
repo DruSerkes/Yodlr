@@ -3,6 +3,7 @@ const router = express.Router();
 const _ = require('lodash');
 const logger = require('../lib/logger');
 const log = logger();
+const jsonschema = require('json-schema');
 
 const users = require('../init_data.json').data;
 let curId = _.size(users);
@@ -15,7 +16,6 @@ router.get('/', (req, res) => {
 /* Create a new user */
 router.post('/', (req, res) => {
 	const user = req.body;
-	console.log('req == ', req);
 	user.id = curId++;
 	if (!user.state) user.state = 'pending';
 
