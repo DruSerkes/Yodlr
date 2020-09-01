@@ -1,17 +1,19 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import SignupFormSchema from './SignupFormSchema';
 import { Button } from '@material-ui/core';
 import useStyles from '../useStyles';
 import { TextField } from 'formik-material-ui';
 
-const SignupForm = ({ addUserToState }) => {
+const SignupForm = ({ submitUserData }) => {
+	const history = useHistory();
 	const classes = useStyles();
 	const initialValues = { email: '', firstName: '', lastName: '' };
 	const handleSubmit = (values, { setSubmitting }) => {
 		setSubmitting(false);
-		addUserToState(values);
-		// TODO - register this user!
+		submitUserData(values);
+		history.push('/');
 	};
 
 	return (

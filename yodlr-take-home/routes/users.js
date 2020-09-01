@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 /* Create a new user */
 router.post('/', (req, res) => {
 	const user = req.body;
+	console.log('req == ', req);
 	user.id = curId++;
 	if (!user.state) user.state = 'pending';
 
