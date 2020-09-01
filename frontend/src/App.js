@@ -26,7 +26,6 @@ function App() {
 		</UserContext.Provider>
 	);
 }
-// TODO make dumb user card component for Admin render
 // 	TODO make signup page add user to backend
 // TODO add add'l functionality for admin (see reqs)
 // TODO refactor Home component
