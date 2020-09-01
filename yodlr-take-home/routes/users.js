@@ -3,7 +3,7 @@ const router = express.Router();
 const _ = require('lodash');
 const logger = require('../lib/logger');
 const log = logger();
-const jsonschema = require('json-schema');
+const jsonschema = require('jsonschema');
 const addUserSchema = require('../schema/addUserSchema.json');
 
 const users = require('../init_data.json').data;
@@ -15,10 +15,13 @@ router.get('/', (req, res) => {
 });
 
 /* Create a new user */
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
 	const user = req.body;
 	const result = jsonschema.validate(user, addUserSchema);
-	if (!result.valid) return res.status(400).json((message: 'invalid data'));
+	if (!result.valid) {
+		const errors = result.errors.map((error) => error.message);
+		return res.status(400).json({ errors: errors });
+	}
 	user.id = curId++;
 	if (!user.state) user.state = 'pending';
 

@@ -20,7 +20,8 @@
 			"title": "The email schema",
 			"description": "must be a valid email",
 			"default": "",
-			"examples": [ "DruTest@test.com" ]
+			"examples": [ "DruTest@test.com" ],
+			"minLength": 1
 		},
 		"firstName": {
 			"$id": "#/properties/firstName",
@@ -28,7 +29,8 @@
 			"title": "The firstName schema",
 			"description": "first name",
 			"default": "",
-			"examples": [ "Dru" ]
+			"examples": [ "Dru" ],
+			"minLength": 1
 		},
 		"lastName": {
 			"$id": "#/properties/lastName",
@@ -36,7 +38,8 @@
 			"title": "The lastName schema",
 			"description": "last name",
 			"default": "",
-			"examples": [ "Serkes" ]
+			"examples": [ "Serkes" ],
+			"minLength": 1
 		}
 	},
 	"additionalProperties": true
