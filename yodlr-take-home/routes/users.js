@@ -4,6 +4,7 @@ const _ = require('lodash');
 const logger = require('../lib/logger');
 const log = logger();
 const jsonschema = require('json-schema');
+const addUserSchema = require('../schema/addUserSchema.json');
 
 const users = require('../init_data.json').data;
 let curId = _.size(users);
@@ -16,6 +17,8 @@ router.get('/', (req, res) => {
 /* Create a new user */
 router.post('/', (req, res) => {
 	const user = req.body;
+	const result = jsonschema.validate(user, addUserSchema);
+	if (!result.valid) return res.status(400).json((message: 'invalid data'));
 	user.id = curId++;
 	if (!user.state) user.state = 'pending';
 
