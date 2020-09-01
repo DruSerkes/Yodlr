@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import SignupForm from '../forms/SignupForm';
 import { Typography } from '@material-ui/core';
 import { ADD_USER } from '../reducer/actionTypes';
@@ -8,10 +8,13 @@ const Signup = () => {
 	// TODO Add function/logic for registering a user
 	// pass function down as prop to SignupForm
 	const { dispatch } = useContext(UserContext);
-	const addUserToState = (values) => {
-		const action = { type: ADD_USER, user: values };
-		dispatch(action);
-	};
+	const addUserToState = useCallback(
+		(values) => {
+			const action = { type: ADD_USER, user: values };
+			dispatch(action);
+		},
+		[ dispatch ]
+	);
 
 	return (
 		<div className="Signup">
