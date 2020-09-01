@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The add user schema",
+    "description": "The add user schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "email": "DruTest@test.com",
+            "firstName": "Dru",
+            "lastName": "Serkes"
+        }
+    ],
+    "required": [
+        "email",
+        "firstName",
+        "lastName"
+    ],
+    "properties": {
+        "email": {
+            "$id": "#/properties/email",
+            "type": "string",
+            "title": "The email schema",
+            "description": "must be a valid email",
+            "default": "",
+            "examples": [
+                "DruTest@test.com"
+            ]
+        },
+        "firstName": {
+            "$id": "#/properties/firstName",
+            "type": "string",
+            "title": "The firstName schema",
+            "description": "first name",
+            "default": "",
+            "examples": [
+                "Dru"
+            ]
+        },
+        "lastName": {
+            "$id": "#/properties/lastName",
+            "type": "string",
+            "title": "The lastName schema",
+            "description": "last name",
+            "default": "",
+            "examples": [
+                "Serkes"
+            ]
+        }
+    },
+    "additionalProperties": true
+}
