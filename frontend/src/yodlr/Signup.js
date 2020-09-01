@@ -3,6 +3,7 @@ import SignupForm from '../forms/SignupForm';
 import { Typography } from '@material-ui/core';
 import { ADD_USER } from '../reducer/actionTypes';
 import UserContext from '../Context';
+import { addUserToDb } from '../helpers';
 
 const Signup = () => {
 	// TODO Add function/logic for registering a user
@@ -19,7 +20,7 @@ const Signup = () => {
 	return (
 		<div className="Signup">
 			<Typography variant="h1">Register</Typography>
-			<SignupForm addUserToState={addUserToState} />
+			<SignupForm addUserToState={addUserToState} addUserToDb={addUserToDb} />
 		</div>
 	);
 };
