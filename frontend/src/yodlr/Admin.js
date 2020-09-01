@@ -4,6 +4,7 @@ import { Typography, Grid, List, makeStyles } from '@material-ui/core';
 import AdminListItem from './AdminListItem';
 import { removeUserFromDb } from '../helpers';
 import { DELETE_USER } from '../reducer/actionTypes';
+import AdminList from './AdminList';
 
 const useStyles = makeStyles((theme) => ({
 	gridItem         : {
@@ -34,6 +35,7 @@ const Admin = () => {
 	const classes = useStyles();
 	const { state, dispatch } = useContext(UserContext);
 	const [ removingUser, setRemovingUser ] = useState(null);
+	const [ users, setUsers ] = useState(state.users);
 	const removeUser = (id) => {
 		setRemovingUser(id);
 	};
@@ -45,6 +47,10 @@ const Admin = () => {
 		},
 		[ dispatch ]
 	);
+
+	// useEffect(() => {
+	// 	setUsers(state.users)
+	// }, [ state ]);
 
 	useEffect(
 		() => {
@@ -68,50 +74,9 @@ const Admin = () => {
 
 	return (
 		<Grid container direction="column" justify="center" alignItems="center" spacing={2}>
-			<Grid item className={classes.gridItem} xs={12} md={8} lg={10}>
-				<Typography variant="h1" className={classes.title}>
-					Admin
-				</Typography>
-				<div className={classes.demo}>
-					<List className={classes.list}>
-						<Typography variant="h2">Users</Typography>
-						{Object.keys(state.users).length ? (
-							Object.values(state.users).map((u) => {
-								return (
-									<AdminListItem
-										id={u.id}
-										email={u.email}
-										firstName={u.firstName}
-										lastName={u.lastName}
-										state={u.state}
-										removeUser={removeUser}
-										classes={classes}
-										key={u.id}
-									/>
-								);
-							})
-						) : (
-							<Typography variant="body1">Loading &hellip;</Typography>
-						)}
-					</List>
-				</div>
-			</Grid>
+			<AdminList users={users} removeUser={removeUser} classes={classes} />
 		</Grid>
 	);
-
-	// return (
-	// 	<div>
-	// 		{state.users ? (
-	// 			Object.values(state.users).map((u) => (
-	// 				<h4 key={u.id}>
-	// 					{u.email} {u.firstName} {u.lastName}
-	// 				</h4>
-	// 			))
-	// 		) : (
-	// 			<h3>Loading &hellip; </h3>
-	// 		)}
-	// 	</div>
-	// );
 };
 
 export default Admin;

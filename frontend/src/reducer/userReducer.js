@@ -7,9 +7,9 @@ function userReducer(state = initialState, action) {
 		case ADD_USER:
 			return { ...state, users: { ...state.users, [action.user.id]: action.user } };
 		case DELETE_USER:
-			const updatedUsers = { ...state };
+			const updatedUsers = { ...state.users };
 			delete updatedUsers[action.id];
-			return { ...updatedUsers };
+			return { ...state, users: { ...updatedUsers } };
 		case UPDATE_USER:
 			return {
 				...state,
