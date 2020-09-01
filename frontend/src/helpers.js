@@ -12,3 +12,13 @@ export const addUserToDb = async (userData) => {
 	const data = await response.json();
 	return data;
 };
+
+export const removeUserFromDb = async (id) => {
+	const response = await fetch(`${BASE_URL}/${id}`, {
+		method  : 'DELETE',
+		headers : {
+			'Content-Type' : 'application/json'
+		}
+	});
+	return response;
+};

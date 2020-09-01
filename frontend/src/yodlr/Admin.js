@@ -1,45 +1,70 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import UserContext from '../Context';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import {
-	Typography,
-	Grid,
-	List,
-	ListItem,
-	ListItemAvatar,
-	ListItemText,
-	ListItemSecondaryAction,
-	IconButton,
-	Avatar,
-	makeStyles
-} from '@material-ui/core';
-
-// const BASE_URL = `http://localhost:3001/users`;
+import { Typography, Grid, List, makeStyles } from '@material-ui/core';
+import AdminListItem from './AdminListItem';
+import { removeUserFromDb } from '../helpers';
+import { DELETE_USER } from '../reducer/actionTypes';
 
 const useStyles = makeStyles((theme) => ({
-	gridItem : {
+	gridItem         : {
 		maxWidth : 752
 	},
-	list     : {
+	list             : {
 		maxWidth : 752,
 		minWidth : 280
 	},
-	listItem : {
-		width : 400
+	listItem         : {
+		minWidth : 500
 	},
-	demo     : {
+	userStateActive  : {
+		color : 'green'
+	},
+	userStatePending : {
+		color : 'orange'
+	},
+	demo             : {
 		backgroundColor : theme.palette.background.paper
 	},
-	title    : {
+	title            : {
 		margin : theme.spacing(4, 0, 2)
 	}
 }));
 
 const Admin = () => {
-	const { state } = useContext(UserContext);
 	const classes = useStyles();
-	console.log('users == ', state);
+	const { state, dispatch } = useContext(UserContext);
+	const [ removingUser, setRemovingUser ] = useState(null);
+	const removeUser = (id) => {
+		setRemovingUser(id);
+	};
+
+	const removeUserFromState = useCallback(
+		(id) => {
+			const action = { type: DELETE_USER, id: id };
+			dispatch(action);
+		},
+		[ dispatch ]
+	);
+
+	useEffect(
+		() => {
+			const removeUser = async () => {
+				if (removingUser) {
+					const result = await removeUserFromDb(removingUser);
+					if (result.status === 204) {
+						removeUserFromState(removingUser);
+					} else {
+						console.log(result);
+					}
+				}
+			};
+			removeUser();
+			return () => {
+				setRemovingUser(null);
+			};
+		},
+		[ removingUser, removeUserFromState ]
+	);
 
 	return (
 		<Grid container direction="column" justify="center" alignItems="center" spacing={2}>
@@ -52,22 +77,17 @@ const Admin = () => {
 						<Typography variant="h2">Users</Typography>
 						{Object.keys(state.users).length ? (
 							Object.values(state.users).map((u) => {
-								let fullName = `${u.firstName} ${u.lastName}`;
 								return (
-									<ListItem className={classes.listItem} key={u.id}>
-										<ListItemAvatar>
-											<Avatar>{u.firstName[0]}</Avatar>
-										</ListItemAvatar>
-										<ListItemText primary={u.email} secondary={fullName} />
-										<ListItemSecondaryAction>
-											<IconButton edge="end" aria-label="activate">
-												<EditIcon />
-											</IconButton>
-											<IconButton edge="end" aria-label="delete">
-												<DeleteIcon />
-											</IconButton>
-										</ListItemSecondaryAction>
-									</ListItem>
+									<AdminListItem
+										id={u.id}
+										email={u.email}
+										firstName={u.firstName}
+										lastName={u.lastName}
+										state={u.state}
+										removeUser={removeUser}
+										classes={classes}
+										key={u.id}
+									/>
 								);
 							})
 						) : (
