@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import UserContext from '../Context';
 import DeleteIcon from '@material-ui/icons/Delete';
-import FolderIcon from '@material-ui/icons/Folder';
+import EditIcon from '@material-ui/icons/Edit';
 import {
 	Typography,
 	Grid,
@@ -60,6 +60,9 @@ const Admin = () => {
 										</ListItemAvatar>
 										<ListItemText primary={u.email} secondary={fullName} />
 										<ListItemSecondaryAction>
+											<IconButton edge="end" aria-label="activate">
+												<EditIcon />
+											</IconButton>
 											<IconButton edge="end" aria-label="delete">
 												<DeleteIcon />
 											</IconButton>
