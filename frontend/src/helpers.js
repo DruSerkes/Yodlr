@@ -29,7 +29,7 @@ export const updateUserDb = async (user) => {
 		headers : {
 			'Content-Type' : 'application/json'
 		},
-		body    : user
+		body    : JSON.stringify(user)
 	});
 	const data = await response.json();
 	return data;

@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import UserContext from '../Context';
 import { Grid, makeStyles } from '@material-ui/core';
-import { removeUserFromDb } from '../helpers';
-import { DELETE_USER } from '../reducer/actionTypes';
+import { removeUserFromDb, updateUserDb } from '../helpers';
+import { DELETE_USER, UPDATE_USER } from '../reducer/actionTypes';
 import AdminList from './AdminList';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,11 +34,14 @@ const Admin = () => {
 	const classes = useStyles();
 	const { state, dispatch } = useContext(UserContext);
 	const [ removingUser, setRemovingUser ] = useState(null);
+	const [ activatingUser, setActivatingUser ] = useState(null);
 	const [ users, setUsers ] = useState(state.users);
 	const removeUser = (id) => {
 		setRemovingUser(id);
 	};
-
+	const activateUser = (user) => {
+		setActivatingUser(user);
+	};
 	const removeUserFromState = useCallback(
 		(id) => {
 			const action = { type: DELETE_USER, id: id };
@@ -46,14 +49,44 @@ const Admin = () => {
 		},
 		[ dispatch ]
 	);
-
+	const updateUserInState = useCallback(
+		(user) => {
+			const action = { type: UPDATE_USER, user };
+			dispatch(action);
+		},
+		[ dispatch ]
+	);
+	// Update UI on state change
 	useEffect(
 		() => {
 			setUsers(state.users);
 		},
 		[ state ]
 	);
+	// Async operation for activating a user
+	useEffect(
+		() => {
+			const activate = async () => {
+				if (activatingUser) {
+					const user = activatingUser;
+					user.state = 'active';
+					const result = await updateUserDb(user);
+					if (result) {
+						updateUserInState(result);
+					} else {
+						console.log(result);
+					}
+				}
+			};
+			activate();
+			return () => {
+				setActivatingUser(null);
+			};
+		},
+		[ activatingUser, updateUserInState ]
+	);
 
+	// Async operation for removing a user
 	useEffect(
 		() => {
 			const removeUser = async () => {
@@ -76,7 +109,7 @@ const Admin = () => {
 
 	return (
 		<Grid container direction="column" alignItems="center" spacing={2}>
-			<AdminList users={users} removeUser={removeUser} classes={classes} />
+			<AdminList users={users} removeUser={removeUser} activateUser={activateUser} classes={classes} />
 		</Grid>
 	);
 };

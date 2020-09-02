@@ -54,7 +54,7 @@ router.put('/:id', (req, res, next) => {
 
 	users[user.id] = user;
 	log.info('Updating user', user);
-	res.json(user);
+	res.status(200).json(user);
 });
 
 module.exports = router;

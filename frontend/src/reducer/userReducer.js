@@ -13,12 +13,15 @@ function userReducer(state = initialState, action) {
 		case UPDATE_USER:
 			return {
 				...state,
-				[action.id]: {
-					...state[action.id],
-					email     : action.user.email,
-					firstName : action.user.firstName,
-					lastName  : action.user.lastName,
-					state     : action.user.state
+				users : {
+					...state.users,
+					[action.user.id]: {
+						...state.users[action.user.id],
+						email     : action.user.email,
+						firstName : action.user.firstName,
+						lastName  : action.user.lastName,
+						state     : action.user.state
+					}
 				}
 			};
 		default:

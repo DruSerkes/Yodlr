@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Typography, List } from '@material-ui/core';
 import AdminListItem from './AdminListItem';
 
-const AdminList = ({ users, classes, removeUser }) => {
+const AdminList = ({ users, classes, removeUser, activateUser }) => {
 	const userList = Object.values(users);
 	if (!userList.length) {
 		return <Typography variant="body1">Loading &hellip;</Typography>;
@@ -24,6 +24,7 @@ const AdminList = ({ users, classes, removeUser }) => {
 								lastName={u.lastName}
 								state={u.state}
 								removeUser={removeUser}
+								activateUser={activateUser}
 								classes={classes}
 								key={u.id}
 							/>

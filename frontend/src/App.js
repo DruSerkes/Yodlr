@@ -26,7 +26,5 @@ function App() {
 		</UserContext.Provider>
 	);
 }
-// TODO add add'l functionality for admin (see reqs)
-// TODO refactor Home component
 
 export default App;
