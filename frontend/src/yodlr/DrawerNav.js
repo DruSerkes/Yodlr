@@ -74,7 +74,7 @@ const DrawerNav = () => {
 					<List aria-label="nav">
 						<ListItemLink to="/" primary="Home" icon={<HomeIcon color="primary" />} />
 						<ListItemLink to="/signup" primary="Signup" icon={<VpnKeyIcon />} />
-						<ListItemLink to="/login" primary="Login" icon={<InboxIcon />} />
+						{/* <ListItemLink to="/login" primary="Login" icon={<InboxIcon />} /> */}
 					</List>
 					<Divider />
 					<List aria-label="admin panel">
