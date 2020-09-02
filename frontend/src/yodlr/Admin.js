@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import UserContext from '../Context';
-import { Typography, Grid, List, makeStyles } from '@material-ui/core';
-import AdminListItem from './AdminListItem';
+import { Grid, makeStyles } from '@material-ui/core';
 import { removeUserFromDb } from '../helpers';
 import { DELETE_USER } from '../reducer/actionTypes';
 import AdminList from './AdminList';
@@ -48,9 +47,12 @@ const Admin = () => {
 		[ dispatch ]
 	);
 
-	// useEffect(() => {
-	// 	setUsers(state.users)
-	// }, [ state ]);
+	useEffect(
+		() => {
+			setUsers(state.users);
+		},
+		[ state ]
+	);
 
 	useEffect(
 		() => {
