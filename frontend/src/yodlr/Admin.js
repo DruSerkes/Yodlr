@@ -75,7 +75,7 @@ const Admin = () => {
 	);
 
 	return (
-		<Grid container direction="column" justify="center" alignItems="center" spacing={2}>
+		<Grid container direction="column" alignItems="center" spacing={2}>
 			<AdminList users={users} removeUser={removeUser} classes={classes} />
 		</Grid>
 	);
