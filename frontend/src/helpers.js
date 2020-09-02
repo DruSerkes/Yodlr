@@ -22,3 +22,15 @@ export const removeUserFromDb = async (id) => {
 	});
 	return response;
 };
+
+export const updateUserDb = async (user) => {
+	const response = await fetch(`${BASE_URL}/${user.id}`, {
+		method  : 'PUT',
+		headers : {
+			'Content-Type' : 'application/json'
+		},
+		body    : user
+	});
+	const data = await response.json();
+	return data;
+};
